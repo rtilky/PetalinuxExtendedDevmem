@@ -29,17 +29,13 @@ printf "Starting at Address 0x%08X\n\n" $startingAddr
 for ((line=0;line<numQW;line++))
 do
    printf "0x%08X" $((startingAddr + 16 * line))
-   valArr=(0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF)
    for ((wordNum=0;wordNum<4;wordNum++))
    do
       currentAddress=$((startingAddr + (16 * line) + (4 * wordNum)))
       regValStr=`devmem $currentAddress`
       regValStr="${regValStr:2}"
       printf "\t%s" $regValStr
-      #valArr[$wordNum]=$((regValStr))
    done
-
    printf "\n"   
 done
-
 printf "\n"
